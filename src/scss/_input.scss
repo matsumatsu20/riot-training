@@ -1,0 +1,36 @@
+.form-check-input {
+  left: 0;
+  top: 0;
+  margin-left: -1.5rem !important;
+  visibility: hidden;
+}
+.form-check-input:before,
+.form-check-input:after {
+  display: block;
+  position: relative;
+  content: '';
+  left: 0;
+  top: 0;
+  visibility: visible;
+}
+.form-check-input:before {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 0.2rem;
+  border-radius: 0.1rem;
+  border: 1px solid #ccc;
+}
+.form-check-input:checked:before {
+  background-color: #666;
+  border: none;
+}
+.form-check-input:checked:after {
+  position: absolute;
+  width: .8rem;
+  height: .4rem;
+  left: .2rem;
+  top: .3rem;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg);
+}
