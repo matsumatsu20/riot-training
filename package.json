@@ -1,0 +1,55 @@
+{
+  "name": "riot-training",
+  "version": "0.0.1",
+  "description": "The project for training riot",
+  "scripts": {
+    "start": "npm run build && webpack-dev-server --hot --inline",
+    "clean": "rimraf ./dist/dev && mkdir -p dist/dev",
+    "clean:prod": "rimraf ./dist/prod && mkdir -p dist/prod",
+    "prebuild": "npm run clean",
+    "build": "webpack",
+    "prebuild:prod": "npm run clean:prod",
+    "build:prod": "NODE_ENV=prod webpack",
+    "beautify": "eslint --ext .js,.tag -c ./.eslintrc ./src/js",
+    "beautify:fix": "eslint --fix --ext .js,.tag -c ./.eslintrc ./src/js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/o-inc/riot-training"
+  },
+  "author": "haijima <k.haijima@o-inc.jp>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "chai": "^3.5.0",
+    "eslint": "^3.18.0",
+    "karma": "^1.5.0",
+    "karma-riot": "^2.0.0",
+    "mocha": "^3.2.0",
+    "node-sass": "^4.5.1",
+    "rimraf": "^2.6.1",
+    "riot-hot-reload": "0.0.2",
+    "riot-route": "^3.1.1",
+    "webpack": "^2.3.2",
+    "webpack-dev-server": "^2.4.2"
+  },
+  "peerDependencies": {
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.2.2",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.27.3",
+    "eslint-loader": "^1.7.0",
+    "eslint-plugin-html": "^2.0.1",
+    "file-loader": "^0.10.1",
+    "html-webpack-plugin": "^2.28.0",
+    "riot-tag-loader": "^1.0.0",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "normalize.css": "^6.0.0",
+    "riot": "^3.4.0",
+    "riot-route": "^3.1.1"
+  }
+}
