@@ -29,7 +29,6 @@
     "node-sass": "^4.5.1",
     "rimraf": "^2.6.1",
     "riot-hot-reload": "0.0.2",
-    "riot-route": "^3.1.1",
     "webpack": "^2.3.2",
     "webpack-dev-server": "^2.4.2"
   },
