@@ -2,11 +2,7 @@
   <div class="container mt-3">
     <button class="btn mb-3" onclick="{ archive }" disabled="{ onlyDone().length == 0 }">Archive</button>
     <ul>
-      <li each="{ todo in todoItems }" class="{ done: todo.done } form-check">
-        <input class="form-check-input" type="checkbox" checked={ todo.done } onchange="{ complete }">
-        <span>{ todo.title }</span><br/>
-        <small>{ todo.description }</small>
-      </li>
+      <todo each= { todo in todoItems } ></todo>
     </ul>
 
     <div class="form-inline">
@@ -18,12 +14,7 @@
     <a href="#archive">Go to Archive page</a>
   </div>
 
-
   <style type="scss">
-    .done {
-      color: grey;
-      text-decoration: line-through;
-    }
     li {
       list-style: none;
     }
@@ -57,6 +48,7 @@
 
     self.complete = e => {
       e.item.todo.done = e.target.checked
+      self.update()
     }
 
     self.archive = () => {

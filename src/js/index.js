@@ -4,5 +4,6 @@ import 'riot-hot-reload'
 import './riot/app'
 import './riot/main'
 import './riot/archive'
+import './riot/todo'
 
 riot.mount('app')
