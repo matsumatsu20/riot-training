@@ -6,6 +6,9 @@
   </li>
 
   <style type="scss">
+    li {
+      list-style: none;
+    }
     .done {
       color: grey;
       text-decoration: line-through;

@@ -14,12 +14,6 @@
     <a href="#archive">Go to Archive page</a>
   </div>
 
-  <style type="scss">
-    li {
-      list-style: none;
-    }
-  </style>
-
   <script>
     const self = this
     self.todoItems = [{ title: 'default item', description: 'This is default todo.', done: true }]
