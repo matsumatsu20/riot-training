@@ -1,5 +1,5 @@
 <app>
-  <navbar />
+  <navbar title="riot-training"/>
 
   <router>
     <route path="archive"><archive /></route>
