@@ -2,7 +2,7 @@
   <div class="container mt-3">
     <button class="btn mb-3" onclick="{ archive }" disabled="{ onlyDone().length == 0 }">Archive</button>
     <ul>
-      <todo each= { todo in todoItems } callback={ parent.complete }></todo>
+      <todo each= { todo in todoItems } todo= { todo }></todo>
     </ul>
 
     <div class="form-inline">
@@ -38,11 +38,6 @@
 
       self.title = ''
       self.description = ''
-    }
-
-    self.complete = e => {
-      e.item.todo.done = e.target.checked
-      self.update()
     }
 
     self.archive = () => {
