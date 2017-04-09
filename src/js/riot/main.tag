@@ -2,7 +2,7 @@
   <div class="container mt-3">
     <button class="btn mb-3" onclick="{ archive }" disabled="{ onlyDone().length == 0 }">Archive</button>
     <ul>
-      <li each="{ todo in todoItems }" class="{ done: todo.done } form-check">
+      <li each="{ todo in activeTodoItems() }" class="{ done: todo.done } form-check">
         <input class="form-check-input" type="checkbox" checked={ todo.done } onchange="{ complete }">
         <span>{ todo.title }</span><br/>
         <small>{ todo.description }</small>
@@ -30,12 +30,12 @@
   </style>
 
   <script>
+    import todoItems from '../model/todoItems'
+
     const self = this
 
-    self.mixin('todoItems')
-
-    self.todoItems = self.renderTodoItems()
-    self.archiveItems = self.renderArchiveItems()
+    self.todoItems = todoItems
+    self.activeTodoItems = () => self.todoItems.filter(item => !item.archive)
 
     self.title = 'asdfasdf'
     self.description = ''
@@ -63,17 +63,12 @@
     }
 
     self.archive = () => {
-      Array.prototype.push.apply(self.archiveItems, self.todoItems.filter(item => item.done))
-
-      const filteredTodoItems = self.todoItems.filter(item => !item.done)
-      self.todoItems.length = 0
-      Array.prototype.push.apply(self.todoItems, filteredTodoItems)
-
+      self.todoItems.forEach(element => {
+        if (element.done) { element.archive = true }
+      })
       self.todoItems.trigger('refresh')
-      self.archiveItems.trigger('refresh')
     }
 
     self.onlyDone = () => self.todoItems.filter(item => item.done)
-
   </script>
 </main>

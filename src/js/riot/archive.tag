@@ -1,7 +1,7 @@
 <archive>
   <div class="container mt-3">
     This is archive page.
-    <li each="{ todo in archiveItems }" class="{ done: todo.done } form-check">
+    <li each="{ todo in archiveTodoItems() }" class="{ done: todo.done } form-check">
       <span>{ todo.title }</span><br/>
       <small>{ todo.description }</small>
     </li>
@@ -11,11 +11,12 @@
   </style>
 
   <script>
+    import todoItems from '../model/todoItems'
+
     const self = this
 
-    self.mixin('todoItems')
+    self.todoItems = todoItems
 
-    self.todoItems = self.renderTodoItems()
-    self.archiveItems = self.renderArchiveItems()
+    self.archiveTodoItems = () => self.todoItems.filter(item => item.archive)
   </script>
 </archive>
