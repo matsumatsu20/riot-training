@@ -31,9 +31,13 @@
 
   <script>
     const self = this
-    self.todoItems = [{ title: 'default item', description: 'This is default todo.', done: true }]
 
-    self.title = ''
+    self.mixin('todoItems')
+
+    self.todoItems = self.renderTodoItems()
+    self.archiveItems = self.renderArchiveItems()
+
+    self.title = 'asdfasdf'
     self.description = ''
 
     self.watchTitle = e => {
@@ -51,8 +55,7 @@
       todo.done = false
       self.todoItems.push(todo)
 
-      self.title = ''
-      self.description = ''
+      self.todoItems.trigger('refresh')
     }
 
     self.complete = e => {
@@ -60,7 +63,14 @@
     }
 
     self.archive = () => {
-      self.todoItems = self.todoItems.filter(item => !item.done)
+      Array.prototype.push.apply(self.archiveItems, self.todoItems.filter(item => item.done))
+
+      const filteredTodoItems = self.todoItems.filter(item => !item.done)
+      self.todoItems.length = 0
+      Array.prototype.push.apply(self.todoItems, filteredTodoItems)
+
+      self.todoItems.trigger('refresh')
+      self.archiveItems.trigger('refresh')
     }
 
     self.onlyDone = () => self.todoItems.filter(item => item.done)
