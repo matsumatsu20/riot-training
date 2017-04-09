@@ -20,7 +20,7 @@
 
     self.complete = e => {
       self.todo.done = e.target.checked
-      self.parent.update()
+      opts.callback()
     }
   </script>
 </todo>
