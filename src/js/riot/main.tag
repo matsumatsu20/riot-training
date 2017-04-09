@@ -1,9 +1,7 @@
 <main>
   <div class="container mt-3">
     <button class="btn mb-3" onclick="{ archive }" disabled="{ onlyDone().length == 0 }">Archive</button>
-    <ul>
-      <todo each="{ todo in todoItems }" callback="{ parent.update }"></todo>
-    </ul>
+    <todo each="{ todo in todoItems }" callback="{ parent.update }"></todo>
 
     <div class="form-inline">
       <input id="title" class="form-control mb-2 mr-sm-2 mb-sm-0" name="title" type="text" value="{ title }" placeholder="title" onkeyup="{ watchTitle }" />
