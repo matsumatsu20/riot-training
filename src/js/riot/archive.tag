@@ -1,9 +1,8 @@
 <archive>
   <div class="container mt-3">
-    This is archive page.
+    <h2>This is archive page.</h2>
     <button class="btn mb-3" onclick="{ destroyAllArchiveItem }">Destroy All!!!</button>
     <li each="{ todo in archiveTodoItems() }" class="{ done: todo.done } form-check">
-      <input class="form-check-input" type="checkbox">
       <span>{ todo.title }</span><br/>
       <small>{ todo.description }</small>
     </li>
