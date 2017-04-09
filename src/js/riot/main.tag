@@ -37,7 +37,7 @@
     self.todoItems = todoItems
     self.activeTodoItems = () => self.todoItems.filter(item => !item.archive)
 
-    self.title = 'asdfasdf'
+    self.title = ''
     self.description = ''
 
     self.watchTitle = e => {
@@ -56,6 +56,9 @@
       self.todoItems.push(todo)
 
       self.todoItems.trigger('refresh')
+
+      self.title = ''
+      self.description = ''
     }
 
     self.complete = e => {
