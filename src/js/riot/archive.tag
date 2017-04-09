@@ -7,6 +7,8 @@
       <span>{ todo.title }</span><br/>
       <small>{ todo.description }</small>
     </li>
+
+    <a href="#">Go to Top page</a>
   </div>
 
   <style type="scss">
