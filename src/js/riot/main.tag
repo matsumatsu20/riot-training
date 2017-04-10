@@ -1,13 +1,7 @@
 <main>
   <div class="container mt-3">
     <button class="btn mb-3" onclick="{ archive }" disabled="{ onlyDone().length == 0 }">Archive</button>
-    <ul>
-      <li each="{ todo in activeTodoItems() }" class="{ done: todo.done } form-check">
-        <input class="form-check-input" type="checkbox" checked={ todo.done } onchange="{ complete }">
-        <span>{ todo.title }</span><br/>
-        <small>{ todo.description }</small>
-      </li>
-    </ul>
+    <todo each="{ todo in activeTodoItems() }" callback="{ parent.update }"></todo>
 
     <div class="form-inline">
       <input id="title" class="form-control mb-2 mr-sm-2 mb-sm-0" name="title" type="text" value="{ title }" placeholder="title" onkeyup="{ watchTitle }" />
@@ -17,17 +11,6 @@
 
     <a href="#archive">Go to Archive page</a>
   </div>
-
-
-  <style type="scss">
-    .done {
-      color: grey;
-      text-decoration: line-through;
-    }
-    li {
-      list-style: none;
-    }
-  </style>
 
   <script>
     import todoItems from '../model/todoItems'
@@ -59,10 +42,6 @@
 
       self.title = ''
       self.description = ''
-    }
-
-    self.complete = e => {
-      e.item.todo.done = e.target.checked
     }
 
     self.archive = () => {
