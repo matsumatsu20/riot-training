@@ -2,7 +2,7 @@
   <div class="container mt-3">
     <button class="btn mb-3" onclick="{ archive }" disabled="{ onlyDone().length == 0 }">Archive</button>
     <ul>
-      <li each="{ todo in todoItems }" class="{ done: todo.done } form-check">
+      <li each="{ todo in activeTodoItems() }" class="{ done: todo.done } form-check">
         <input class="form-check-input" type="checkbox" checked={ todo.done } onchange="{ complete }">
         <span>{ todo.title }</span><br/>
         <small>{ todo.description }</small>
@@ -30,8 +30,12 @@
   </style>
 
   <script>
+    import todoItems from '../model/todoItems'
+
     const self = this
-    self.todoItems = [{ title: 'default item', description: 'This is default todo.', done: true }]
+
+    self.todoItems = todoItems
+    self.activeTodoItems = () => self.todoItems.filter(item => !item.archive)
 
     self.title = ''
     self.description = ''
@@ -51,6 +55,8 @@
       todo.done = false
       self.todoItems.push(todo)
 
+      self.todoItems.trigger('refresh')
+
       self.title = ''
       self.description = ''
     }
@@ -60,10 +66,12 @@
     }
 
     self.archive = () => {
-      self.todoItems = self.todoItems.filter(item => !item.done)
+      self.todoItems.forEach(element => {
+        if (element.done) { element.archive = true }
+      })
+      self.todoItems.trigger('refresh')
     }
 
     self.onlyDone = () => self.todoItems.filter(item => item.done)
-
   </script>
 </main>
