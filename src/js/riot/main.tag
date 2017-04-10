@@ -1,7 +1,7 @@
 <main>
   <div class="container mt-3">
     <button class="btn mb-3" onclick="{ archive }" disabled="{ onlyDone().length == 0 }">Archive</button>
-    <todo each="{ todo in todoItems }" callback="{ parent.update }"></todo>
+    <todo each="{ todo in activeTodoItems() }" callback="{ parent.update }"></todo>
 
     <div class="form-inline">
       <input id="title" class="form-control mb-2 mr-sm-2 mb-sm-0" name="title" type="text" value="{ title }" placeholder="title" onkeyup="{ watchTitle }" />
@@ -13,8 +13,12 @@
   </div>
 
   <script>
+    import todoItems from '../model/todoItems'
+
     const self = this
-    self.todoItems = [{ title: 'default item', description: 'This is default todo.', done: true }]
+
+    self.todoItems = todoItems
+    self.activeTodoItems = () => self.todoItems.filter(item => !item.archive)
 
     self.title = ''
     self.description = ''
@@ -34,15 +38,19 @@
       todo.done = false
       self.todoItems.push(todo)
 
+      self.todoItems.trigger('refresh')
+
       self.title = ''
       self.description = ''
     }
 
     self.archive = () => {
-      self.todoItems = self.todoItems.filter(item => !item.done)
+      self.todoItems.forEach(element => {
+        if (element.done) { element.archive = true }
+      })
+      self.todoItems.trigger('refresh')
     }
 
     self.onlyDone = () => self.todoItems.filter(item => item.done)
-
   </script>
 </main>
