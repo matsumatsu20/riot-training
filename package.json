@@ -48,6 +48,7 @@
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
     "normalize.css": "^6.0.0",
+    "reduxy": "0.0.3",
     "riot": "^3.4.0",
     "riot-route": "^3.1.1"
   }
